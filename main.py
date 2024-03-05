@@ -1,35 +1,54 @@
-# Ejemplo de uso
+from faker import Faker
+from conexion import ConexionMongo
 from logica import UsuarioDAO
 
-# Crear una instancia de UsuarioDAO
-dao = UsuarioDAO()
 
-# Agregar un nuevo usuario
-usuario_nuevo = {
-    'id': 1,
-    'nombre': 'Juan',
-    'apellido paterno': 'Perez',
-    'apellido materno': 'Perez',
-    'año_de_nacimiento': 2004,
-    'edad': 30,
-    'estado': 'hidalgo',
-    'correo': 'juan@example.com',
-    'clave_secreta': ''
-}
-# dao.agregar_usuario(usuario_nuevo)
+def generar_usuario_faker():
+    fake = Faker()
+    usuario = {
+        'nombre': fake.first_name(),
+        'apellido paterno': fake.last_name(),
+        'apellido materno': fake.last_name(),
+        'año_de_nacimiento': fake.random_int(min=1980, max=2000),
+        'edad': fake.random_int(min=18, max=60),
+        'estado': fake.state(),
+        'correo': fake.email(),
+        'clave_secreta': fake.password()
+    }
+    return usuario
 
-# Obtener todos los usuarios
-# usuarios = dao.obtener_usuarios()
-# print(usuarios)
 
-# Actualizar un usuario existente
-usuario_id = dao.obtener_usuarios()[0]['id']
-nuevos_datos = {'edad': 31}
-dao.actualizar_usuario(usuario_id, nuevos_datos)
+def main():
+    # Crear una instancia de UsuarioDAO
+    dao = UsuarioDAO()
 
-# Eliminar un usuario
-dao.eliminar_usuario(usuario_id)
+    # Generar y agregar varios usuarios utilizando Faker
+    for _ in range(5):
+        usuario_nuevo = generar_usuario_faker()
+        dao.agregar_usuario(usuario_nuevo)
 
+    # Obtener y mostrar todos los usuarios
+    usuarios = dao.obtener_usuarios()
+    print("Todos los usuarios:")
+    print(usuarios)
+
+    # Actualizar el primer usuario (cambia la edad)
+    if usuarios:
+        usuario_id = usuarios[0]['id']
+        nuevos_datos = {'edad': 31}
+        dao.actualizar_usuario(usuario_id, nuevos_datos)
+        print("\nUsuario actualizado:")
+        print(dao.obtener_usuario_por_id(usuario_id))
+
+    # Eliminar el último usuario
+    if usuarios:
+        usuario_id_eliminar = usuarios[-1]['id']
+        dao.eliminar_usuario(usuario_id_eliminar)
+        print(f"\nUsuario con id {usuario_id_eliminar} eliminado.")
+
+
+if __name__ == "__main__":
+    main()
 
 # realiza la logica para las funcinoes crud de esta clase
 

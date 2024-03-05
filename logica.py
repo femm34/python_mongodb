@@ -1,4 +1,3 @@
-from conexion import ConexionMongo
 
 
 # realiza la logica para las funcinoes crud que faltan en esta clase, utilizando los metodos que tenemos disponibles en self.collection:
@@ -9,6 +8,8 @@ from conexion import ConexionMongo
 # find_one() -  este metodo recibe como parametro un objeto de mongodb {} con la clave 'id' y como valor el id del usuario, por ejemplo {'id': usuario_id}
 # update_one()
 # delete_one()
+from conexion import ConexionMongo
+
 
 class UsuarioDAO:
     def __init__(self):
