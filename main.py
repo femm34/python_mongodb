@@ -1,6 +1,25 @@
 from faker import Faker
-from conexion import ConexionMongo
 from logica import UsuarioDAO
+
+# Crea documentos usando los metodos de faker, en este archivo tienes ya disponible faker
+# pudes llamar a los siguientes metodos que nos da el modulo de faker:
+#       first_name(), last_name(), random_int(min=1980, max=2000), state()
+# ejemplo:
+
+fake = Faker()
+print(fake.first_name())  # te da un nombre random
+
+# la estructura de un documento usuario, es la siguiente
+#   usuario = {
+#            'nombre': genera el valor con faker,
+#            'apellido paterno': genera el valor con faker,
+#            'apellido materno': genera el valor con faker,
+#            'año_de_nacimiento': genera el valor con faker,
+#            'edad': genera el valor con faker,
+#            'estado': genera el valor con faker,
+#            'correo': genera el valor con faker,
+#            'clave_secreta': dejalo con un string vacio, lo generaras despues
+#   }
 
 
 def generar_usuario_faker():
@@ -53,7 +72,11 @@ if __name__ == "__main__":
 # realiza la logica para las funcinoes crud de esta clase
 
 
-# utiliza la libreria faker para extraer datos y generar un registro con esa informacion
+# prueba todas las operaciones CRUD que hiciste, crea un documento, lee un documento (muestralo), actualiza un documento, elimina un documento
+
+
+# utiliza la libreria faker para extraer datos y generar un registro con esa informacion, tambien muestra por consola ese registro
+
 
 # utilizando faker y estructuras ciclicas, utiliza un for para insertar 10 documentos a la coleccion, utilizando while inserta 7 documentos a la coleccion
 # por ultimo obteniendo la cantidad total de registros existentes hasta este punto, con un for, agrega esa cantidad de nuevosregistros,
@@ -73,9 +96,3 @@ if __name__ == "__main__":
 # poner en la clave es unicamente femm15
 
 # genera la clave secreta para los usuarios con id 1,2,3 y 4 y actualiza su respectivo campo de clave_secreta vacio que esta en la coleccion
-
-
-# from faker import Faker
-# from datetime import datetime
-# from pymongo import MongoClient
-# from conexion import ConexionMongo
