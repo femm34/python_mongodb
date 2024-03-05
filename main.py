@@ -1,49 +1,62 @@
-from logica import AsignaturaDAO
+# Ejemplo de uso
+from logica import UsuarioDAO
 
-asignatura_dao = AsignaturaDAO()
+# Crear una instancia de UsuarioDAO
+dao = UsuarioDAO()
 
-# Agregar una asignatura
-nueva_asignatura = {
-    'nombre': 'Aplicaciones web',
-    'creditos': 10,
-    'profesor': 'Alberto Corona'
+# Agregar un nuevo usuario
+usuario_nuevo = {
+    'id': 1,
+    'nombre': 'Juan',
+    'apellido paterno': 'Perez',
+    'apellido materno': 'Perez',
+    'año_de_nacimiento': 2004,
+    'edad': 30,
+    'estado': 'hidalgo',
+    'correo': 'juan@example.com',
+    'clave_secreta': ''
 }
+# dao.agregar_usuario(usuario_nuevo)
 
-# asignatura_dao.agregar_asignatura(nueva_asignatura)
+# Obtener todos los usuarios
+# usuarios = dao.obtener_usuarios()
+# print(usuarios)
 
+# Actualizar un usuario existente
+usuario_id = dao.obtener_usuarios()[0]['id']
+nuevos_datos = {'edad': 31}
+dao.actualizar_usuario(usuario_id, nuevos_datos)
 
-# Obtener todas las asignaturas
-todas_asignaturas = asignatura_dao.obtener_asignaturas()
-print("Todas las asignaturas:")
-print(todas_asignaturas)
-
-# Obtener una asignatura por ID
-# asignatura_por_id = asignatura_dao.obtener_asignatura_por_id(
-#     asignatura_dao.obtener_asignaturas()[2]['_id'])
-# print("\nAsignatura por ID:")
-# print(asignatura_por_id)
-
-# # Actualizar una asignatura
-# asignatura_id_a_actualizar = asignatura_dao.obtener_asignaturas()[2]['_id']
-# nuevos_datos_asignatura = {'profesor': 'Cinthya Diaz'}
-# asignatura_dao.actualizar_asignatura(
-#     asignatura_id_a_actualizar, nuevos_datos_asignatura)
-
-# # Obtener todas las asignaturas después de la actualización
-# todas_asignaturas_actualizadas = asignatura_dao.obtener_asignaturas()
-# print("\nTodas las asignaturas después de la actualización:")
-# print(todas_asignaturas_actualizadas)
-
-# # Eliminar una asignatura
+# Eliminar un usuario
+dao.eliminar_usuario(usuario_id)
 
 
-# asignatura_id_a_eliminar = asignatura_dao.obtener_asignaturas()[2]['_id']
-# asignatura_dao.eliminar_asignatura(asignatura_id_a_eliminar)
+# realiza la logica para las funcinoes crud de esta clase
 
-# # Obtener todas las asignaturas después de la eliminación
-# todas_asignaturas_despues_eliminar = asignatura_dao.obtener_asignaturas()
-# print("\nTodas las asignaturas después de la eliminación:")
-# print(todas_asignaturas_despues_eliminar)
 
-# # Cerrar la conexión
-# asignatura_dao.conexion.cerrar_conexion()
+# utiliza la libreria faker para extraer datos y generar un registro con esa informacion
+
+# utilizando faker y estructuras ciclicas, utiliza un for para insertar 10 documentos a la coleccion, utilizando while inserta 7 documentos a la coleccion
+# por ultimo obteniendo la cantidad total de registros existentes hasta este punto, con un for, agrega esa cantidad de nuevosregistros,
+
+
+# con codigo python muestra todos los usuarios de la base de datos que son mayores de 7 años y menores de 25
+
+
+# muestra por consola al primer usuario de menor edad de la coleccion
+# muestra por consola al primer usuario de mayor edad de la coleccion
+
+# muestra por consola unicamente los nombres de todos los documentos de la coleccion
+
+# haz una funcion que genere una clave secreta para cada usuario a partir de su informacion, esta debe contener lo siguiente:
+# dos primeras letras de su nombre, primer letra de apellido materno, primeras dos letras de su apellido paterno,ultimos dos digitos de su fecha de nacimiento,
+# edad, primera y ultimas dos letras de su estado, todos los caracteres que se encuentran antes del @ en su correo electronico, es decir, si tengo femm15@gmail.com, lo que voy a
+# poner en la clave es unicamente femm15
+
+# genera la clave secreta para los usuarios con id 1,2,3 y 4 y actualiza su respectivo campo de clave_secreta vacio que esta en la coleccion
+
+
+# from faker import Faker
+# from datetime import datetime
+# from pymongo import MongoClient
+# from conexion import ConexionMongo
